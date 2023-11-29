@@ -55,7 +55,28 @@ outPutLayer = Dense(numOfLbls+1, activation='softmax')(dropTwo)
 model = Model(inputLayer, outPutLayer)
 model.compile(optimizer = 'adam', loss ='sparse_categorical_crossentropy', metrics =['accuracy'])
 
+# Print out the summary of the model
 modelHistory = model.fit(trainImgs, trainLbls,
-batch_size = 64, epochs=20, validation_data=(testImgs, testLbls), verbose=1)
+batch_size = 128, epochs=20, validation_data=(testImgs, testLbls), verbose=1)
+
 
 # <-- End of Model -->
+
+plt.figure(figsize=(10,5))
+plt.subplot(1,2,1)
+plt.plot(modelHistory.history['accuracy'], label='accuracy')
+plt.plot(modelHistory.history['val_accuracy'], label='val_accuracy')
+plt.title('Accuracy')
+plt.xlabel('Epoch')
+plt.ylabel('Accuracy')
+plt.legend(loc='lower right')
+
+plt.subplot(1,2,2)
+plt.plot(modelHistory.history['loss'], label='loss')
+plt.plot(modelHistory.history['val_loss'], label='val_loss')
+plt.title('Loss')
+plt.xlabel('Epoch')
+plt.ylabel('Loss')
+plt.legend(loc='upper right')
+plt.show()
+
