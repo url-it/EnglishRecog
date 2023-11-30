@@ -80,3 +80,10 @@ plt.ylabel('Loss')
 plt.legend(loc='upper right')
 plt.show()
 
+
+# Create a csv file for the model
+# Csv path results.csv
+
+filePath = 'results.csv'
+df = pd.DataFrame(modelHistory.history)
+df.to_csv(filePath, index=False)
