@@ -5,8 +5,6 @@ from emnist import extract_test_samples
 from tensorflow.keras.layers import Input, Conv2D, Flatten, Dropout, Dense, MaxPool2D
 from tensorflow.keras.models import Model
 import matplotlib.pyplot as plt
-# from tensorflow.keraas.layers import Input, Dense, Conv2D, MaxPooling2D, UpSampling2D
-# from tensorflow.keras.models import Model
 
 # On this one you guys might need to download it using pip
 # In order for this to work
@@ -32,10 +30,9 @@ testImgs = np.expand_dims(testImgs, -1)
 # print(trainImgs.shape)
 
 # Actual Model
-# Setting the number of specific labels for the neural network
+
 numOfLbls = len(set(trainLbls))
 
-# Creating the convolution layers for the neural network
 inputLayer = Input(shape = trainImgs[0].shape)
 conv = Conv2D(32, (3,3), strides = 2, activation= 'relu')(inputLayer)
 maxPool = MaxPool2D((2, 2))(conv)
@@ -51,35 +48,34 @@ dropTwo = Dropout(0.2)(dense)
 
 outPutLayer = Dense(numOfLbls+1, activation='softmax')(dropTwo)
 
-
 model = Model(inputLayer, outPutLayer)
 model.compile(optimizer = 'adam', loss ='sparse_categorical_crossentropy', metrics =['accuracy'])
 
-# Print out the summary of the model
 modelHistory = model.fit(trainImgs, trainLbls,
-batch_size = 128, epochs=20, validation_data=(testImgs, testLbls), verbose=1)
+batch_size = 500, epochs=100, validation_data=(testImgs, testLbls), verbose=1)
 
-
+model.save('EnlgishRecModel.h5')
 # <-- End of Model -->
 
-plt.figure(figsize=(10,5))
-plt.subplot(1,2,1)
-plt.plot(modelHistory.history['accuracy'], label='accuracy')
-plt.plot(modelHistory.history['val_accuracy'], label='val_accuracy')
-plt.title('Accuracy')
-plt.xlabel('Epoch')
-plt.ylabel('Accuracy')
-plt.legend(loc='lower right')
+# plt.figure(figsize=(10,5))
 
-plt.subplot(1,2,2)
-plt.plot(modelHistory.history['loss'], label='loss')
-plt.plot(modelHistory.history['val_loss'], label='val_loss')
-plt.title('Loss')
-plt.xlabel('Epoch')
-plt.ylabel('Loss')
-plt.legend(loc='upper right')
-plt.show()
+# plt.subplot(1,2,1)
+# plt.plot(modelHistory.history['accuracy'], label='accuracy')
+# plt.plot(modelHistory.history['val_accuracy'], label='val_accuracy')
+# plt.title('Accuracy')
+# plt.xlabel('Epoch')
+# plt.ylabel('Accuracy')
+# plt.legend(loc='lower right')
 
-filePath = 'results.csv'
-df = pd.DataFrame(modelHistory.history)
-df.to_csv(filePath, index=False)
+# plt.subplot(1,2,2)
+# plt.plot(modelHistory.history['loss'], label='loss')
+# plt.plot(modelHistory.history['val_loss'], label='val_loss')
+# plt.title('Loss')
+# plt.xlabel('Epoch')
+# plt.ylabel('Loss')
+# plt.legend(loc='upper right')
+# plt.show()
+
+# filePath = 'results.csv'
+# df = pd.DataFrame(modelHistory.history)
+# df.to_csv(filePath, index=False)
