@@ -27,7 +27,6 @@ testImgs, testLbls = extract_test_samples('letters')
 
 trainImgs = np.expand_dims(trainImgs, -1)
 testImgs = np.expand_dims(testImgs, -1)
-# print(trainImgs.shape)
 
 # Actual Model
 
@@ -55,27 +54,30 @@ modelHistory = model.fit(trainImgs, trainLbls,
 batch_size = 500, epochs=100, validation_data=(testImgs, testLbls), verbose=1)
 
 model.save('EnlgishRecModel.h5')
+
 # <-- End of Model -->
 
-# plt.figure(figsize=(10,5))
+# Plotting the accuracy and loss
 
-# plt.subplot(1,2,1)
-# plt.plot(modelHistory.history['accuracy'], label='accuracy')
-# plt.plot(modelHistory.history['val_accuracy'], label='val_accuracy')
-# plt.title('Accuracy')
-# plt.xlabel('Epoch')
-# plt.ylabel('Accuracy')
-# plt.legend(loc='lower right')
+plt.figure(figsize=(10,5))
 
-# plt.subplot(1,2,2)
-# plt.plot(modelHistory.history['loss'], label='loss')
-# plt.plot(modelHistory.history['val_loss'], label='val_loss')
-# plt.title('Loss')
-# plt.xlabel('Epoch')
-# plt.ylabel('Loss')
-# plt.legend(loc='upper right')
-# plt.show()
+plt.subplot(1,2,1)
+plt.plot(modelHistory.history['accuracy'], label='accuracy')
+plt.plot(modelHistory.history['val_accuracy'], label='val_accuracy')
+plt.title('Accuracy')
+plt.xlabel('Epoch')
+plt.ylabel('Accuracy')
+plt.legend(loc='lower right')
 
-# filePath = 'results.csv'
-# df = pd.DataFrame(modelHistory.history)
-# df.to_csv(filePath, index=False)
+plt.subplot(1,2,2)
+plt.plot(modelHistory.history['loss'], label='loss')
+plt.plot(modelHistory.history['val_loss'], label='val_loss')
+plt.title('Loss')
+plt.xlabel('Epoch')
+plt.ylabel('Loss')
+plt.legend(loc='upper right')
+plt.show()
+
+filePath = 'results.csv'
+df = pd.DataFrame(modelHistory.history)
+df.to_csv(filePath, index=False)

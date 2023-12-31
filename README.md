@@ -2,17 +2,15 @@
 
 ## Overview
 
-This code implements a convolutional neural network (CNN) using TensorFlow and Keras for recognizing handwritten English letters. The EMNIST dataset, specifically the subset containing letters, is used for training and testing the model. The trained model is saved as "EnglishRecModel.h5", and the training history is saved to a CSV file named "results.csv".
+This code implements a convolutional neural network (CNN) using TensorFlow and Keras for recognizing handwritten English letters. The EMNIST dataset is used for training and testing the model. The trained model is saved as "EnglishRecModel.h5", and the training history is saved to a CSV file named "results.csv".
 
-## Dependencies
+## libraries
 
-Ensure that you have the necessary dependencies installed before running the code. You can install them using the following:
+Ensure that you have the necessary libraries installed before running the code. You can install them using the following:
 
 ```bash
 pip install numpy pandas emnist tensorflow matplotlib
 ```
-
-Additionally, download the EMNIST dataset by running the following commands:
 
 ```python
 from emnist import list_datasets
@@ -25,7 +23,7 @@ After running the above commands once, you can comment them out to avoid unneces
 
 The EMNIST dataset is split into training and testing sets. Images and labels for both sets are extracted using the `extract_training_samples` and `extract_test_samples` functions from the EMNIST library.
 
-To visualize an example image from the dataset, you can use the following code:
+To see an example image from the dataset, you can use the following code:
 
 ```python
 import matplotlib.pyplot as plt
@@ -72,4 +70,4 @@ Uncomment the code at the end of the script to visualize the training history us
 - Trained Model: `EnglishRecModel.h5`
 - Training History: `results.csv`
 
-Feel free to adjust hyperparameters, model architecture, or dataset parameters to further optimize the model for your specific use case.
+Feel free to adjust hyperparameters, model, or dataset parameters to further optimize the model. Feedback is appericated :)
