@@ -2,7 +2,7 @@
 
 ## Overview
 
-This code implements a convolutional neural network (CNN) using TensorFlow and Keras for recognizing handwritten English letters. The EMNIST dataset is used for training and testing the model. The trained model is saved as "EnglishRecModel.h5", and the training history is saved to a CSV file named "results.csv".
+This project involves implements of convolutional neural network (CNN) using TensorFlow and Keras for recognizing handwritten English letters. The EMNIST dataset is used for training and testing the model. The trained model is saved as "EnglishRecModel.h5", and the training history is saved to a CSV file named "results.csv".
 
 ## libraries
 
